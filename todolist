@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TO-DO LIST</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<style>
+			.dropbtn {
+				background-color: red;
+				color: black;
+				padding: 22px;
+				font-size: 16px;
+				border: none;
+				cursor: pointer;
+			}
+
+			.dropdown {
+				position: relative;
+				display: inline-block;
+			}
+
+			.dropdown-content {
+				display: none;
+				position: absolute;
+				background-color: red;
+				min-width: 50px;
+				overflow: auto;
+				z-index: 1;
+			}
+
+			.dropdown a:hover {
+				background-color: grey
+			}
+
+			.show {
+				display:block;
+			}
+		</style>
+        <script>
+            function addRow()
+            {
+                var task = document.getElementById('task').value;
+                var deadline = document.getElementById('deadline').value;
+                var category = document.getElementById('category').value;
+				var complete_incomplete = document.getElementById('complete_incomplete').value;
+				  
+			    var table = document.getElementsByTagName('table')[0];
+			    var newRow = table.insertRow(table.rows.length/2+1);
+			  
+			    var c1 = newRow.insertCell(0);
+			    var c2 = newRow.insertCell(1);
+			    var c3 = newRow.insertCell(2);
+			    var c4 = newRow.insertCell(3);
+			  
+			    c1.innerHTML = task;
+			    c2.innerHTML = deadline;
+			    c3.innerHTML = category;
+			    c4.innerHTML = complete_incomplete;
+            }
+
+			function myFunction() {
+				document.getElementById("myDropdown").classList.toggle("show");
+			}
+
+
+			window.onclick = function(event) {
+				if (!event.target.matches('.dropbtn')) {
+
+				var drop = document.getElementsByClassName("dropdown-content");
+				var i;
+				for (i = 0; i < drop.length; i++) {
+				  var open = drop[i];
+				  if (open.classList.contains('show')) {
+					open.classList.remove('show');
+				  }
+				}
+			  }
+			}
+        </script>
+    </head>
+    <body>
+        Task: <input type="text" name="task" id="task" /><br/><br/>
+        Deadline: <input type="datetime-local" name="deadline" id="deadline" /><br/><br/>
+        Category: <input type="text" name="category" id="category" /><br/><br/>
+		Complete/Incomplete: <input type="checkbox" name="complete_incomplete" id="complete_incomplete" /><br/><br/>
+		<button onclick="addRow();">Add Row</button><br/><br/>
+		
+		<center>
+        <table border="1"  style="background-color:red;">
+            <tr>
+                <th>Task</th>
+                <th>Deadline</th>
+                <th>Category</th>
+				<th>Complete/Incomplete</th>
+            </tr>
+        </table>
+		</center>
+		<div class="Categories">
+			<button onclick="myFunction()" class="dropbtn">Categories Drop Down</button>
+			<div id="myDropdown" class="dropdown-content">
+			<a href="#House Chores">House Chores</a>
+			<a href="#Errands">Errands</a>
+			<a href="#Homework">Homework</a>
+			<a href="#Volunteering">Volunteering</a>
+			</div>
+		</div>
+    </body>
+</html>
